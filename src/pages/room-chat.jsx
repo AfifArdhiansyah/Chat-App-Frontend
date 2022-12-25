@@ -1,12 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button} from "react-bootstrap";
 import "../assets/styles/room-chat.css"
 import ImageIcon from "../assets/images/back.svg"
 import ProfileIcon from "../assets/images/profile-white.svg"
 import {Message} from "../components"
 import SendIcon from "../assets/images/send.svg"
+import {useSelector} from "react-redux"
 
 const RoomChat = () =>{
+    const {loading, status, message, conversations} = useSelector(state => state.conversations)
+    const [sender, setSender] = useState("");
+    const checkUser = () =>{
+        const user = localStorage.getItem("user");
+        if(user){
+            setSender(user)
+        }
+    }
+    const checkIsSender = (userId) =>{
+        if(userId === sender){
+            return true;
+        }else{
+            return false;
+        }
+    }
     return(
         <div id="room-chat-page">
             <div className="room-chat-header">

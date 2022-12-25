@@ -1,11 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button} from "react-bootstrap";
 import "../assets/styles/home.css"
 import PeopleIcon from "../assets/images/people-icon.svg"
 import NewMessageIcon from "../assets/images/new-message.svg"
 import { ChatBox } from "../components";
+import {useSelector} from "react-redux"
 
 const Home = () =>{
+    let {loading, status, message, conversations} = useSelector(state => state.conversations);
+    const user = conversations.data.user.username;
+    const getReceiver = (obj) =>{
+        if(obj.user1_conversation.username == user){
+            return obj.user2_conversation.username;
+        }else{
+            return obj.user1_conversation.username;
+        }
+    }
+    const getLastMessage = (obj) =>{
+        const lastMessage = obj.chats[obj.chats.length - 1];
+        return lastMessage.text;
+    }
     return(
         <div className="home-page">
             <div className="header">
@@ -16,20 +30,11 @@ const Home = () =>{
                 </Button>
             </div>
             <div className="chat-container">
-                <ChatBox name={"Kokom"} message={"Apa kabar nagabs?"}/>
-                <ChatBox name={"Ari"} message={"Assalamualaikum"}/>
-                <ChatBox name={"Kokom"} message={"Apa kabar nagabs?"}/>
-                <ChatBox name={"Ari"} message={"Assalamualaikum"}/>
-                <ChatBox name={"Kokom"} message={"Apa kabar nagabs?"}/>
-                <ChatBox name={"Ari"} message={"Assalamualaikum"}/>
-                <ChatBox name={"Kokom"} message={"Apa kabar nagabs?"}/>
-                <ChatBox name={"Ari"} message={"Assalamualaikum"}/>
-                <ChatBox name={"Kokom"} message={"Apa kabar nagabs?"}/>
-                <ChatBox name={"Ari"} message={"Assalamualaikum"}/>
-                <ChatBox name={"Kokom"} message={"Apa kabar nagabs?"}/>
-                <ChatBox name={"Ari"} message={"Assalamualaikum"}/>
-                <ChatBox name={"Kokom"} message={"Apa kabar nagabs?"}/>
-                <ChatBox name={"Ari"} message={"Assalamualaikum"}/>
+                {conversations.data.conversations.map((obj, index) => {
+                    return(
+                        <ChatBox key={index} name={getReceiver(obj)} message={getLastMessage(obj)}/>
+                    )
+                })}
             </div>            
         </div>
     )

@@ -3,8 +3,9 @@ import { Form, Button} from "react-bootstrap";
 import "../assets/styles/login.css"
 import ChatLogo from "../assets/images/chat-app-logo.svg"
 import {login} from "../redux/slices/authSlice"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import {getConversations} from "../redux/slices/conversationSlice"
 
 const Login = () => {
     const initalState = {
@@ -14,9 +15,10 @@ const Login = () => {
     const [formData, setFormData] = useState(initalState);
     const dispatch = useDispatch();
     const redirect = useNavigate();
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(login({formData, redirect}));
+        await dispatch(login({formData}));
+        dispatch(getConversations({redirect}));
         setFormData(initalState);
     };
     const handleChange = (e) => {
