@@ -8,7 +8,7 @@ function App() {
         <Route path="/" element={<Login/>} />
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/home" element={<Home/>} />
-        <Route path="/chat" element={<RoomChat/>} />
+        <Route path="/chat/:idConv" element={<RoomChat/>} />
       </Routes>
     </BrowserRouter>
   );

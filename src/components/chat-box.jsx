@@ -3,9 +3,9 @@ import {Col, Row} from "react-bootstrap";
 import "../assets/styles/home.css"
 import ProfileIcon from "../assets/images/profile.svg"
 
-const ChatBox = ({idReceiver, name, message}) =>{
+const ChatBox = ({idConversation, name, message}) =>{
     return(
-        <a className="href-chat" href="/chat">
+        <a className="href-chat" href={"/chat/" + idConversation}>
             <Row className="chat-box">
                 <Col className="col-3"><img src={ProfileIcon} alt="" /></Col>
                 <Col>
