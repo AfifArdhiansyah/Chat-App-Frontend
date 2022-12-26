@@ -4,11 +4,19 @@ import "../assets/styles/home.css"
 import PeopleIcon from "../assets/images/people-icon.svg"
 import NewMessageIcon from "../assets/images/new-message.svg"
 import { ChatBox } from "../components";
-import {useSelector} from "react-redux"
+import {useSelector, useDispatch} from "react-redux"
+import {getConversations} from "../redux/slices/conversationSlice"
 
 const Home = () =>{
     let {loading, status, message, conversations} = useSelector(state => state.conversations);
-    const user = conversations.data.user.username;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getConversations());
+    }, [])
+    let user = "";
+    if(conversations.data){
+        user = conversations.data.user.username;
+    }
     const getReceiver = (obj) =>{
         if(obj.user1_conversation.username == user){
             return obj.user2_conversation.username;
@@ -30,11 +38,15 @@ const Home = () =>{
                 </Button>
             </div>
             <div className="chat-container">
-                {conversations.data.conversations.map((obj, index) => {
-                    return(
-                        <ChatBox key={index} name={getReceiver(obj)} message={getLastMessage(obj)}/>
-                    )
-                })}
+                {conversations.data ? (
+                    conversations.data.conversations.map((obj, index) => {
+                        return(
+                            <ChatBox key={index} idConversation={obj.id} name={getReceiver(obj)} message={getLastMessage(obj)}/>
+                        )
+                    })
+                ) : (
+                    <h1>No Data</h1>
+                )}
             </div>            
         </div>
     )

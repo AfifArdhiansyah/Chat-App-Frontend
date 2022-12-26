@@ -3,12 +3,10 @@ import { createAsyncThunk ,createSlice } from '@reduxjs/toolkit';
 
 export const getConversations = createAsyncThunk(
     'conversations/getConversations',
-    async ({redirect},{rejectWithValue}) => {
+    async (_,{rejectWithValue}) => {
+        console.log("test getConversations")
         try {
             const response = await conversationService.getConversations();
-            if(response.data.status == "success"){
-                redirect("/home");
-            }
             return response;
         } catch (err) {
             return rejectWithValue(err.response.data);

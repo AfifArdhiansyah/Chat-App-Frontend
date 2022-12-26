@@ -7,9 +7,7 @@ export const register = createAsyncThunk(
         try {
             const response = await auth.register(formData);
             if (response.data.status == "success") {
-                setTimeout(() => {
-                  redirect("/");
-                }, 3000);
+                redirect("/");
             }
             return response.data;
         } catch (err) {
@@ -20,11 +18,12 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
     'auth/login',
-    async ({formData}, {rejectWithValue}) => {
+    async ({formData, redirect}, {rejectWithValue}) => {
         try {
             const response = await auth.login(formData);
             if (response.data.status == "success") {
                 localStorage.setItem('user', JSON.stringify({token: response.data.data.token}));
+                redirect("/home");
             }
             return response.data;
         } catch (err) {

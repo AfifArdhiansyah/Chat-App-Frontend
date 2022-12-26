@@ -9,15 +9,12 @@ import {useSelector} from "react-redux"
 
 const RoomChat = () =>{
     const {loading, status, message, conversations} = useSelector(state => state.conversations)
-    const [sender, setSender] = useState("");
-    const checkUser = () =>{
-        const user = localStorage.getItem("user");
-        if(user){
-            setSender(user)
-        }
+    let user = "";
+    if(conversations.data){
+        user = conversations.data.user.id;
     }
-    const checkIsSender = (userId) =>{
-        if(userId === sender){
+    const isSender = (obj) =>{
+        if(obj.from_user_id == user){
             return true;
         }else{
             return false;

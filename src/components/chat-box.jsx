@@ -3,7 +3,7 @@ import {Col, Row} from "react-bootstrap";
 import "../assets/styles/home.css"
 import ProfileIcon from "../assets/images/profile.svg"
 
-const ChatBox = ({name, message}) =>{
+const ChatBox = ({idReceiver, name, message}) =>{
     return(
         <a className="href-chat" href="/chat">
             <Row className="chat-box">
