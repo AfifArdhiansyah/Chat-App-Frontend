@@ -5,7 +5,6 @@ import ChatLogo from "../assets/images/chat-app-logo.svg"
 import {login} from "../redux/slices/authSlice"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {getConversations} from "../redux/slices/conversationSlice"
 
 const Login = () => {
     const initalState = {
@@ -17,8 +16,7 @@ const Login = () => {
     const redirect = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(login({formData}));
-        dispatch(getConversations({redirect}));
+        dispatch(login({formData, redirect}));
         setFormData(initalState);
     };
     const handleChange = (e) => {
