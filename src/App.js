@@ -1,5 +1,5 @@
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
-import {Login, SignUp, Home, RoomChat} from './pages';
+import {Login, SignUp, Home, RoomChat, FriendList} from './pages';
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/home" element={<Home/>} />
         <Route path="/chat/:idConv" element={<RoomChat/>} />
+        <Route path="/friend-list" element={<FriendList/>} />
       </Routes>
     </BrowserRouter>
   );
