@@ -31,7 +31,9 @@ const Home = () =>{
     return(
         <div className="home-page">
             <div className="header">
-                <img src={PeopleIcon} alt="" />
+                <Button className="friend-list-btn">
+                    <a href="/friend-list"><img src={PeopleIcon} alt="" /></a>
+                </Button>
                 <h3>Chat App</h3>
                 <Button className="new-message-btn">
                     <img src={NewMessageIcon} alt="" />

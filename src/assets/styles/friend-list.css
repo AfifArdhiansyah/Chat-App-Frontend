@@ -2,13 +2,13 @@
     margin: 0;
     padding: 0;
 }
-.home-page{
+.friend-list-page{
     background-color: #B4C0FF;
     min-height: 100vh;
     width: 100vw;
     overflow: hidden;
 }
-.header{
+.friend-list-header{
     background-color: #608FC6;
     width: 100%;
     padding: 20px;
@@ -21,8 +21,9 @@
     top: 0;
     height: 80px;
 }
-.header h3{
-    color: white;
+.back-btn{
+    width: fit-content;
+    background-color: transparent;
 }
 .new-message-btn{
     width: 60px;
@@ -31,33 +32,26 @@
 .new-message-btn img{
     width: 100%;
 }
-.friend-list-btn{
-    width: 60px;
-    background-color: transparent;
-}
-.friend-list-btn img{
-    width: 100%;
-}
-.href-chat{    
-    text-decoration: none;
-}
-.chat-box{
-    background-color: white;
-    margin: 10px;
-    border-radius: 10px;
-    padding: 10px;
-    align-items: center;
-}
-.chat-name{
-    color: #608FC6;
-    font-weight: bold;
-    font-size: larger;    
-}
-.chat-message{
-    color: #B4C0FF;
-    font-weight: bold;
-}
-.chat-container{
+.friend-list-container{
     margin-top: 100px;
     margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+}
+.href-friend{    
+    text-decoration: none;
+}
+.friend-box{
+    color: #608FC6;
+    background-color: white;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.friend-box:hover{
+    background-color: #97a5ed;
+}
+.friend-box-info{
+    font-size: large;
+    font-weight: bold;
 }

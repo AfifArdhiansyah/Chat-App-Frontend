@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./slices/authSlice";
 import conversationReducer from "./slices/conversationSlice";
+import friendReducer from "./slices/friendSlice";
 
 const persistConfig = {
   key: "root",
@@ -12,6 +13,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: authReducer,
   conversations: conversationReducer,
+  friends: friendReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
